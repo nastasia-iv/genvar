@@ -1,0 +1,12 @@
+##fileformat=VCFv4.2
+#CHROM POS ID REF ALT QUAL FILTER INFO
+chr18	47411	.	A	C	.	.	.
+chr18	47411	rs774102370	A	T	.	.	.
+chr18	47415	rs772013863	T	TC	.	.	.
+chr18	47425	rs1348242192	C	A	.	.	.
+chr18	47430	.	T	TC	.	.	.
+chr18	47449	rs758861544	G	A	.	.	.
+chr18	47450	rs780641694	A	C	.	.	.
+chr18	47455	rs750103557	G	A	.	.	.
+chr18	47464	.	C	CAG	.	.	.
+chr18	47592	.	AAG	A	.	.	.
