@@ -12,3 +12,8 @@ This is the repo for the semester project at the Institute of Bioinformatics (20
 
 08.03.2024
 Настя: добавила намётки кода для вытаскивания контекста (get_context.ipynb) 
+
+14-17.03.2024
+Ира: 
+- переписала парсер, добавила его в отдельный файл `Parser_vcf.ipynb`
+- начала считать суммарный AC для транскриптов на небольшом наборе данных
