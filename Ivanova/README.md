@@ -1,5 +1,5 @@
 ## Brief content information
-This directory contains code to perform the task of analyzing the effects of sequence context on variant frequencies.
+This directory contains code to perform the task of analyzing the effects of sequence context on variant frequencies. A list of required packages and libraries is presented in [requirements.txt](requirements.txt).
 
 * ### [all_code.py](all_code.py)
   A set of functions for processing data: obtaining the sequence context, calculating chi-square and p-values when comparing contexts, and drawing plots of the dependence of p-values on the position of the variant.
