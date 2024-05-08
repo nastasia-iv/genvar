@@ -1,12 +1,11 @@
 import csv
 import gzip
 import os
-import sys
-from typing import List, Dict, Any
+from typing import List
 
 # csv.field_size_limit(sys.maxsize)
 
-headers = ['CHROM', 'POS', 'ID', 'REF', 'ALT', 'CLNSIG', 'CLNVC',  'GENEINFO', 'MC', 
+headers = ['CHROM', 'POS', 'ID', 'REF', 'ALT', 'CLNSIG', 'CLNVC', 'GENEINFO', 'MC',
            'Consequence', 'SYMBOL', 'Gene', 'Feature_type', 'Feature', 'BIOTYPE', 'cDNA_position', 'CANONICAL']
 
 # Column names for Clinvar VCF file
@@ -60,9 +59,9 @@ def parse_clinvar_vcf(vcf_file: str, output_dir: str = '', output_filename: str 
     with gzip.open(vcf_file, 'rt') as input_file, open(output_file, 'a', newline='', encoding='utf-8') as output_file:
         vcf_reader = csv.reader(input_file, delimiter='\t')
         tsv_writer = csv.writer(output_file, delimiter='\t')
-        
+
         for line in vcf_reader:
-            parsed_data = parse_line(line)
+            parsed_data = parse_vcf_line(line)
             for data in parsed_data:
                 tsv_writer.writerow(data)
 
@@ -91,10 +90,10 @@ def parse_vcf_line(line: List[str]) -> List[List[str]]:
             for category in clinvar_info_dict:
                 if element.startswith(f'{category}='):
                     value = element.split('=')
-                    clinvar_info_dict[category] = value[-1] 
-        
+                    clinvar_info_dict[category] = value[-1]
+
         vep_info = info[-1].split(',')
-        
+
         for element in vep_info:
             variant_info = element.split('|')
 
@@ -106,11 +105,12 @@ def parse_vcf_line(line: List[str]) -> List[List[str]]:
             info_biotype = variant_info[vep_names_dict.get('BIOTYPE')]
             info_cDNA = variant_info[vep_names_dict.get('cDNA_position')]
             info_canonical = variant_info[vep_names_dict.get('CANONICAL')]
-            
+
             filtered_data = [
                 chrom, position, variation_id, ref, alt,
-                clinvar_info_dict['CLNSIG'], clinvar_info_dict['CLNVC'], clinvar_info_dict['GENEINFO'], clinvar_info_dict['MC'],
-                info_consequence, info_symbol, info_gene, info_feature_type, 
+                clinvar_info_dict['CLNSIG'], clinvar_info_dict['CLNVC'], clinvar_info_dict['GENEINFO'],
+                clinvar_info_dict['MC'],
+                info_consequence, info_symbol, info_gene, info_feature_type,
                 info_feature, info_biotype,
                 info_cDNA, info_canonical
             ]
