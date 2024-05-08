@@ -19,7 +19,17 @@ This directory contains code to perform the task of analyzing the effects of seq
   
 * ### [parse_vcf_canonical.py](parse_vcf_canonical.py)  
   Function for obtaining information about [gnomad v4](https://gnomad.broadinstitute.org/downloads#v4) variants located on canonical Ensemble transcripts.
+  To run parser, import function `parse_vcf` as shown below, specifying the path to the compressed (`.bgz`) vcf file. If necessary, you can specify the output folder and file name. More details can be found in the function annotation.
+  ```python
+  from parse_vcf_canonical import parse_vcf  
+  parse_vcf("../data_dir/gnomad/example_chr1.bgz")  
+  ```
 
   
 * ### [parse_vcf_clinvar.py](parse_vcf_clinvar.py)  
   Function for parsing pre-processed with VEP [Clinvar](https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38/) (v.20240331) file.
+    To run Clinvar parser, import function `parse_clinvar_vcf` as shown below, specifying the path to the compressed (`.gz`) vcf file. If necessary, you can specify the output folder and file name. More details can be found in the function annotation.
+  ```python
+  from parse_vcf_clinvar import parse_clinvar_vcf  
+  parse_clinvar_vcf('../data_dir/clinvar/example_clinvar.vcf.gz')
+  ```
