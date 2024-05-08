@@ -1,12 +1,25 @@
-import numpy as np
+from typing import List, Tuple, Union
+
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
-import seaborn as sns
-from scipy.stats import chi2_contingency
 from Bio.Seq import Seq
+from scipy.stats import chi2_contingency
 
 
-def get_context(df, transcript_fasta, left_len, right_len):
+def get_context(df: pd.DataFrame, transcript_fasta: dict, left_len: int, right_len: int) -> str:
+    """
+    Add sequences context to the dataframe.
+
+    Args:
+        df (pd.DataFrame): The dataframe containing transcript and position information.
+        transcript_fasta (dict): A dictionary containing transcript sequences.
+        left_len (int): The length of the left flanking region.
+        right_len (int): The length of the right flanking region.
+
+    Returns:
+        str: A message indicating that contexts have been added to the dataframe.
+    """
     contexts = []
 
     for index, row in df.iterrows():
@@ -31,13 +44,32 @@ def get_context(df, transcript_fasta, left_len, right_len):
     return message
 
 
-def filter_and_convert_to_list(column):
+def filter_and_convert_to_list(column: pd.Series) -> List[str]:
+    """
+    Filter and convert a dataframe column to a list.
+
+    Args:
+        column (pd.Series): The dataframe column to filter and convert.
+
+    Returns:
+        List[str]: A list containing filtered values from the dataframe column.
+    """
     filtered_list = column.tolist()
     filtered_list = list(filter(None, filtered_list))
     return filtered_list
 
 
-def calculate_chi2_p_values(context_ben, context_pat):
+def calculate_chi2_p_values(context_ben: List[str], context_pat: List[str]) -> Tuple[List[float], List[float]]:
+    """
+    Calculate chi-squared values and p-values for two sets of context sequences.
+
+    Args:
+        context_ben (List[str]): List of context sequences for benign samples.
+        context_pat (List[str]): List of context sequences for pathogenic samples.
+
+    Returns:
+        Tuple[List[float], List[float]]: Chi-squared values and p-values.
+    """
     sequences_array_ben = np.array(context_ben)
     sequences_array_pat = np.array(context_pat)
 
@@ -77,7 +109,18 @@ def calculate_chi2_p_values(context_ben, context_pat):
 
     return chi2_values, p_values
 
-def plot_p_values(positions_list, p_values_list):
+
+def plot_p_values(positions_list: List[List[Union[int, float]]], p_values_list: List[List[float]]) -> None:
+    """
+    Plot p-values across positions.
+
+    Args:
+        positions_list (List[List[Union[int, float]]]): List of position values.
+        p_values_list (List[List[float]]): List of p-values corresponding to each position.
+
+    Returns:
+        None
+    """
     plt.figure(figsize=(10, 3))
     #colors = ['#C8A2C8', '#B0E0E6', '#FFB6C1']
     colors = ['lightcoral', 'lightblue', 'plum']
@@ -99,7 +142,16 @@ def plot_p_values(positions_list, p_values_list):
     plt.show()
 
 
-def translate_context(df_column):
+def translate_context(df_column: pd.Series) -> List[str]:
+    """
+    Translate nucleotide context sequences to amino acid sequences.
+
+    Args:
+        df_column (pd.Series): A pandas series containing nucleotide context sequences.
+
+    Returns:
+        List[str]: A list of translated amino acid sequences.
+    """
     aa_column = []
     for context in df_column:
         if context is None:
