@@ -6,7 +6,7 @@ This directory contains code to perform the task of analyzing the effects of seq
 
   
 * ### [data_processing.ipynb](data_processing.ipynb)  
-  Jupiter notebook for processing data from of [gnomad v4](https://gnomad.broadinstitute.org/downloads#v4) exomes and [Clinvar](https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38/) (v.20240331). It contains a brief data analysis, primary variant filtering, and dataframes create options. The resulting dataframes are in the [data](data) folder.
+  Jupiter notebook for processing data from of [gnomad v4](https://gnomad.broadinstitute.org/downloads#v4) exomes and [Clinvar](https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38/) (v.20240331). It contains a brief data analysis, primary variant filtering, and dataframes create options. The resulting dataframes and images are in the [data](data) and [images](images) folders, respectively.
 
   
 * ### [get_context_nmd_escape.ipynb](get_context_nmd_escape.ipynb)  
