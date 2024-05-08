@@ -10,11 +10,11 @@ This directory contains code to perform the task of analyzing the effects of seq
 
   
 * ### [get_context_nmd_escape.ipynb](get_context_nmd_escape.ipynb)  
-  Jupiter notebook with sequence context analysis for nonsense-mediated mRNA decay (NMD) escaped region variants. 
+  Jupiter notebook with sequence context analysis for nonsense-mediated mRNA decay (NMD) escaped region variants. Graphs with analysis results are located in the [images](images). 
 
   
 * ### [get_context_nmd_undergo.ipynb](get_context_nmd_undergo.ipynb)  
-  Jupiter notebook with sequence context analysis for variants falling under NMD.
+  Jupiter notebook with sequence context analysis for variants falling under NMD. Graphs with analysis results are located in the [images](images).  
 
   
 * ### [parse_vcf_canonical.py](parse_vcf_canonical.py)  
