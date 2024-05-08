@@ -1,7 +1,7 @@
 import csv
 import gzip
 import os
-from typing import List, Dict, Any
+from typing import List, Dict
 
 headers = [
     'Chr', 'Position', 'rsID', 'Ref', 'Alt', 'AC', 'Impact', 'Consequence',
@@ -14,10 +14,10 @@ vcf_columns_dict = {col: idx for idx, col in enumerate(vcf_columns)}
 
 # Column names for VEP data
 vep_names = ('Allele|Consequence|IMPACT|SYMBOL|Gene|Feature_type|Feature|BIOTYPE|EXON|INTRON|HGVSc|HGVSp|'
-            'cDNA_position|CDS_position|Protein_position|Amino_acids|Codons|ALLELE_NUM|DISTANCE|STRAND|FLAGS|'
-            'VARIANT_CLASS|SYMBOL_SOURCE|HGNC_ID|CANONICAL|MANE_SELECT|MANE_PLUS_CLINICAL|TSL|APPRIS|CCDS|ENSP|'
-            'UNIPROT_ISOFORM|SOURCE|||DOMAINS|miRNA|HGVS_OFFSET|PUBMED|MOTIF_NAME|MOTIF_POS|HIGH_INF_POS|'
-            'MOTIF_SCORE_CHANGE|TRANSCRIPTION_FACTORS|LoF|LoF_filter|LoF_flags|LoF_info').split('|')
+             'cDNA_position|CDS_position|Protein_position|Amino_acids|Codons|ALLELE_NUM|DISTANCE|STRAND|FLAGS|'
+             'VARIANT_CLASS|SYMBOL_SOURCE|HGNC_ID|CANONICAL|MANE_SELECT|MANE_PLUS_CLINICAL|TSL|APPRIS|CCDS|ENSP|'
+             'UNIPROT_ISOFORM|SOURCE|||DOMAINS|miRNA|HGVS_OFFSET|PUBMED|MOTIF_NAME|MOTIF_POS|HIGH_INF_POS|'
+             'MOTIF_SCORE_CHANGE|TRANSCRIPTION_FACTORS|LoF|LoF_filter|LoF_flags|LoF_info').split('|')
 
 # Column names for population data
 population_names = (
