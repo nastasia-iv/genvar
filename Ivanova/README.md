@@ -2,15 +2,15 @@
 This directory contains code to perform the task of analyzing the effects of sequence context on variant frequencies.
 
 * ### [all_code.py](all_code.py)
-  A set of functions for processing data: obtaining the sequence context, calculating chi-square and p-values when comparing contexts, drawing a plots of the dependence of p-values on the position of the variant.
+  A set of functions for processing data: obtaining the sequence context, calculating chi-square and p-values when comparing contexts, and drawing plots of the dependence of p-values on the position of the variant.
 
   
 * ### [data_processing.ipynb](data_processing.ipynb)  
-  Jupiter notebook for processing data from of [gnomad v4](https://gnomad.broadinstitute.org/downloads#v4) exomes and [Clinvar](https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38/) (v.20240331). Contains a brief data analysis, primary variant filtering and dataframes create options.
+  Jupiter notebook for processing data from of [gnomad v4](https://gnomad.broadinstitute.org/downloads#v4) exomes and [Clinvar](https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38/) (v.20240331). It contains a brief data analysis, primary variant filtering, and dataframes create options. The resulting dataframes are in the [data](data) folder.
 
   
 * ### [get_context_nmd_escape.ipynb](get_context_nmd_escape.ipynb)  
-  Jupiter notebook with sequence context analysis for variants in the nonsense-mediated mRNA decay (NMD) escape region. 
+  Jupiter notebook with sequence context analysis for nonsense-mediated mRNA decay (NMD) escaped region variants. 
 
   
 * ### [get_context_nmd_undergo.ipynb](get_context_nmd_undergo.ipynb)  
