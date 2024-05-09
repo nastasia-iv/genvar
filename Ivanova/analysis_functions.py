@@ -4,7 +4,30 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from Bio.Seq import Seq
+from pyfaidx import Fasta
 from scipy.stats import chi2_contingency
+
+transcript_fasta = Fasta("data_dir/gencode_data/gencode.v45.transcripts.fa.gz", key_function = lambda x: x.split('.')[0])
+transcript_lengths = {}
+for key in transcript_fasta.keys():
+    transcript_lengths[key] = len(transcript_fasta[key])
+
+
+def get_cdna_percentage(row: pd.Series) -> float:
+    """
+    Calculate the percentage of cDNA position relative to the length of the transcript.
+
+    Args:
+        row (pd.Series): A row from a DataFrame.
+
+    Returns:
+        float: The percentage of cDNA position relative to the length of the transcript.
+               Returns None if the transcript is not found in the 'transcript_lengths' dictionary.
+    """
+    transcript = row['Canonical_transcript']
+    if transcript in transcript_lengths:
+        return (row['cDNA_position'] / transcript_lengths[transcript]) * 100
+    return None
 
 
 def get_context(df: pd.DataFrame, transcript_fasta: dict, left_len: int, right_len: int) -> str:
@@ -44,6 +67,73 @@ def get_context(df: pd.DataFrame, transcript_fasta: dict, left_len: int, right_l
     return message
 
 
+def check_ref(row: pd.Series) -> str:
+    """
+    Checks if the reference matches the target letter in the context. 
+    At the same time, it determines whether the variant is on the + or - strand.
+
+    Args:
+        row: pd.Series: A row from a DataFrame.
+
+    Returns:
+        str: A string indicating whether the reference base matches the variant in the genomic context.
+            Returns '+' strand if they match, '-' strand if the variant is complementary to the reference, and
+            'Not_defined' if the transcript ID is not found or other conditions are not met.
+    """
+    transcript_id = row['Canonical_transcript']
+    cDNA_position = row['cDNA_position']
+    variant = str(row['Context'][12])
+    ref = row['REF']
+
+    complement_bases = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C'}
+
+    if transcript_id in transcript_fasta:
+        fasta_sequence = str(transcript_fasta[transcript_id][int(cDNA_position) - 1])
+
+        if variant == fasta_sequence and variant == ref:
+            return '+'
+        elif variant == fasta_sequence == fasta_sequence and variant == complement_bases.get(ref):
+            return '-'
+        else:
+            return 'Not_defined'
+    else:
+        return 'Not_defined'
+
+
+def get_codon_position(row: pd.Series) -> Union[int, str]:
+    """
+    Change the reference option to an alternative one in the context of the sequence. 
+    Then determine at what codon position the variant is located.
+
+    Args:
+        row: pd.Series: A row from a DataFrame.
+
+    Returns:
+        Union[int, str]: The updated codon position or a string indicating the absence of a stop codon or strand information.
+    """
+    context = row['Context']
+    strand = row['Strand']
+    alt = row['ALT']
+    complement_bases = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C'}
+
+    if strand == '+':
+        updated_context = context[:12] + alt + context[13:]
+    elif strand == '-':
+        complement_alt = complement_bases.get(alt)
+        updated_context = context[:12] + complement_alt + context[13:]
+    else:
+        return 'No_strand'
+
+    if updated_context[10:13] in ['TAA', 'TAG', 'TGA']:
+        return 3
+    elif updated_context[11:14] in ['TAA', 'TAG', 'TGA']:
+        return 2
+    elif updated_context[12:15] in ['TAA', 'TAG', 'TGA']:
+        return 1
+    else:
+        return 'No_stop'
+
+
 def filter_and_convert_to_list(column: pd.Series) -> List[str]:
     """
     Filter and convert a dataframe column to a list.
@@ -59,7 +149,7 @@ def filter_and_convert_to_list(column: pd.Series) -> List[str]:
     return filtered_list
 
 
-def calculate_chi2_p_values(context_ben: List[str], context_pat: List[str]) -> Tuple[List[float], List[float]]:
+def calculate_chi2_p_values(context_ben, context_pat):
     """
     Calculate chi-squared values and p-values for two sets of context sequences.
 
@@ -103,61 +193,14 @@ def calculate_chi2_p_values(context_ben: List[str], context_pat: List[str]) -> T
 
     for i in range(freq_array_pat.shape[0]):
         contingency_table = np.array([freq_array_pat[i], freq_array_ben[i]])
-        chi2, p_value, _, _ = chi2_contingency(contingency_table)
-        chi2_values.append(chi2)
-        p_values.append(p_value)
+        try:
+            chi2, p_value, _, _ = chi2_contingency(contingency_table)
+        except ValueError as e:
+            # установка псевдо-значения p-value в случае ошибки
+            chi2_values.append(np.nan)
+            p_values.append(1.0)
+        else:
+            chi2_values.append(chi2)
+            p_values.append(p_value)
 
     return chi2_values, p_values
-
-
-def plot_p_values(positions_list: List[List[Union[int, float]]], p_values_list: List[List[float]]) -> None:
-    """
-    Plot p-values across positions.
-
-    Args:
-        positions_list (List[List[Union[int, float]]]): List of position values.
-        p_values_list (List[List[float]]): List of p-values corresponding to each position.
-
-    Returns:
-        None
-    """
-    plt.figure(figsize=(10, 3))
-    #colors = ['#C8A2C8', '#B0E0E6', '#FFB6C1']
-    colors = ['lightcoral', 'lightblue', 'plum']
-
-    for positions, p_values, color in zip(positions_list, p_values_list, colors):
-        plt.plot(positions, np.log10(p_values), marker='o', linestyle='-', color=color)
-
-    plt.title('Logarithm of P-Values Across Positions')
-    plt.xlabel('Position')
-    plt.ylabel('Log10(p-value)')
-    plt.grid(False)
-    plt.legend(['1st', '2nd', '3rd'], title='Position in codon')
-
-    all_positions = [pos for sublist in positions_list for pos in sublist]
-    plt.xticks(all_positions, [str(pos) if pos == 0 else f"{pos}" if pos < 0 else f"+{pos}" for pos in all_positions])
-
-    plt.axvspan(-0.5, 0.5, color='yellow', alpha=0.3)
-
-    plt.show()
-
-
-def translate_context(df_column: pd.Series) -> List[str]:
-    """
-    Translate nucleotide context sequences to amino acid sequences.
-
-    Args:
-        df_column (pd.Series): A pandas series containing nucleotide context sequences.
-
-    Returns:
-        List[str]: A list of translated amino acid sequences.
-    """
-    aa_column = []
-    for context in df_column:
-        if context is None:
-            aa_column.append(None)
-        else:
-            sequence = Seq(context)
-            aa_sequence = sequence.translate()
-            aa_column.append(str(aa_sequence))
-    return aa_column
