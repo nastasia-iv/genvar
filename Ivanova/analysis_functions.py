@@ -6,28 +6,6 @@ from pyfaidx import Fasta
 from scipy.stats import chi2_contingency
 from statsmodels.stats.multitest import multipletests
 
-transcript_fasta = Fasta("data_dir/gencode_data/gencode.v45.transcripts.fa.gz", key_function = lambda x: x.split('.')[0])
-transcript_lengths = {}
-for key in transcript_fasta.keys():
-    transcript_lengths[key] = len(transcript_fasta[key])
-
-
-def get_cdna_percentage(row: pd.Series) -> float:
-    """
-    Calculate the percentage of cDNA position relative to the length of the transcript.
-
-    Args:
-        row (pd.Series): A row from a DataFrame.
-
-    Returns:
-        float: The percentage of cDNA position relative to the length of the transcript.
-               Returns None if the transcript is not found in the 'transcript_lengths' dictionary.
-    """
-    transcript = row['Canonical_transcript']
-    if transcript in transcript_lengths:
-        return (row['cDNA_position'] / transcript_lengths[transcript]) * 100
-    return None
-
 
 def get_context(df: pd.DataFrame, transcript_fasta: dict, left_len: int, right_len: int) -> str:
     """
@@ -66,13 +44,14 @@ def get_context(df: pd.DataFrame, transcript_fasta: dict, left_len: int, right_l
     return message
 
 
-def check_ref(row: pd.Series) -> str:
+def check_ref(row: pd.Series, transcript_fasta: dict) -> str:
     """
     Checks if the reference matches the target letter in the context. 
     At the same time, it determines whether the variant is on the + or - strand.
 
     Args:
         row: pd.Series: A row from a DataFrame.
+        transcript_fasta: dict: A dictionary containing transcript sequences.
 
     Returns:
         str: A string indicating whether the reference base matches the variant in the genomic context.
@@ -148,7 +127,7 @@ def filter_and_convert_to_list(column: pd.Series) -> List[str]:
     return filtered_list
 
 
-def calculate_chi2_p_values(context_ben, context_pat):
+def calculate_chi2_p_values(context_ben: (List[str]), context_pat: (List[str])) -> Tuple[List[float], List[float]]:
     """
     Calculate chi-squared values and p-values (with FDR) for two sets of context sequences.
 
