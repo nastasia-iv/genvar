@@ -1,11 +1,10 @@
 from typing import List, Tuple, Union
 
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from Bio.Seq import Seq
 from pyfaidx import Fasta
 from scipy.stats import chi2_contingency
+from statsmodels.stats.multitest import multipletests
 
 transcript_fasta = Fasta("data_dir/gencode_data/gencode.v45.transcripts.fa.gz", key_function = lambda x: x.split('.')[0])
 transcript_lengths = {}
@@ -151,7 +150,7 @@ def filter_and_convert_to_list(column: pd.Series) -> List[str]:
 
 def calculate_chi2_p_values(context_ben, context_pat):
     """
-    Calculate chi-squared values and p-values for two sets of context sequences.
+    Calculate chi-squared values and p-values (with FDR) for two sets of context sequences.
 
     Args:
         context_ben (List[str]): List of context sequences for benign samples.
@@ -196,11 +195,13 @@ def calculate_chi2_p_values(context_ben, context_pat):
         try:
             chi2, p_value, _, _ = chi2_contingency(contingency_table)
         except ValueError as e:
-            # установка псевдо-значения p-value в случае ошибки
+            # pseudo p-value in case of error
             chi2_values.append(np.nan)
             p_values.append(1.0)
         else:
             chi2_values.append(chi2)
             p_values.append(p_value)
 
-    return chi2_values, p_values
+    _, p_values_corrected, _, _ = multipletests(p_values, method='fdr_bh')
+
+    return chi2_values,  p_values_corrected
