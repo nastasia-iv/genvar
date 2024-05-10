@@ -1,5 +1,5 @@
 ## 💫 Sequence context analysis
-This directory contains code for analyzing the effect of sequence context on variant frequency. The list of required packages and libraries is presented in the [environment.yaml](environment.yaml).
+This directory contains code for analyzing the effect of sequence context on variant frequency. The list of required packages and libraries is presented in the [environment.yaml](environment.yaml). Please note: scripts for identifying NMD(-) regions must be obtained separately from [here](https://github.com/rebeccaito/nmd-escape).
 
 * #### [analysis_functions.py](analysis_functions.py)
   A set of functions for processing data: obtaining the sequence context, calculating chi-square and p-values when comparing contexts, and drawing plots of the dependence of p-values on the position of the variant.
