@@ -20,5 +20,3 @@ dependencies:
   - scipy==1.12.0
   - seaborn=0.13.2
   - seqlogo=5.29.8
-  - pip:
-      - nmd-escape==0.1
