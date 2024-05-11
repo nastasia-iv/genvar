@@ -4,7 +4,7 @@ import os
 import cyvcf2
 
 
-def vcf_parsing(file_path: str) -> None:
+def vcf_parsing(file_path: str) -> str:
     '''
     Parses the VCF file and extracts relevant data, then saves the processed data to a TSV file.
 
