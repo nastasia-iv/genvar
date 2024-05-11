@@ -1,4 +1,4 @@
-## Improving the prediction of genetic variant effect using large-scale human genome variation data  
+# Improving the prediction of genetic variant effect using large-scale human genome variation data  
 
   #### Students:
   * [Irina Grishchenko](https://github.com/grishchenkoira) (место работы?)  
@@ -6,7 +6,7 @@
   #### Supervisor:
 * Yury Barbitoff (Institute of Bioinformatics Research & Education)  
 
-  ### Overview
+  ## Overview
 Evaluation of the functional effects of genetic variants is a crucial task for interpretation of NGS results in rare disease diagnostics. Besides, understanding of the functional consequences of genetic variants is no less important for enhancing our understanding of how and why variants may have different effects in different cases. Recently, the Genome Aggregation Database (gnomAD) released an updated version of the human genome variation dataset, now including as many as 800,000+ human exomes and genomes.  
   
 The **goal** of this project is to utilize the gnomad v.4.0.0 dataset to improve the prediction of genetic variant effects and explore patterns of variation using different types of variants.  
