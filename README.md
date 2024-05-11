@@ -18,7 +18,7 @@ To reach this goal, we work in several independent directions:
 During this task we explored the relationship between variant frequency and the corresponding codon change and neighboring codons for putative loss-of-function variants (stop gains).  
 It is known that although predicted loss of function (pLoF) variants are highly deleterious and play important roles in disease biology, many of these variants may not actually result in loss of function. To get rid of potentially “false” LOFs, we took the following steps:  
 * used variants only on *canonical* transcripts.  
-* removed options containing *LOF-flags* and *LOF-filter*, i.e. got rid of all options that were annotated as potential technical artifacts.  
+* removed variants containing *LOF-flags* and *LOF-filter*.  
 * added metrics for assessing biological variants *LOEUF* and *pext* to the data.  
   - the loss-of-function observed over expected upper bound fraction, or [LOEUF score](https://doi.org/10.1007/s00439-022-02509-x), is a metric that places each gene on a continuous scale of loss-of-function constraint. Low scores are highly correlated with disease genes and gene essentiality. Due to expected shifts in the LOEUF distribution between gnomAD v2.1.1 and v4.0, it recommemded to use a threshold of LOEUF < 0.6 for v4.0 and [LOEUF < 0.35 for v2](https://gnomad.broadinstitute.org/news/2024-03-gnomad-v4-0-gene-constraint/#loeuf-guidance). We use the threshold for gnomAD v.2 because data on LOEUF were taken specifically for this dataset.  
   - [pext](https://gnomad.broadinstitute.org/help/pext) (proportion expression across transcripts) summarizes the expression values of isoforms in tissues, etc. allows visualization of the expression status of exonic regions in tissues. For each option, we took the average pext value for all tissues and left only those for which this indicator exceeded 0.5. Information about pext boundaries is taken from [Singer-Berk M et al, 2023](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10029069/).  
@@ -33,4 +33,5 @@ After dividing the dataset into conditionally pathogenic (AC < 2) and conditiona
   
 2.  Context analysis between pathogenic and non-pathogenic variants did not show statistically significant differences, with the exception of a possible statistical difference at -1 position for variants located in the first codon position for the NMD(+) dataset (p-value = 0.025).  
 
-3.  Analysis using chi-square showed that the relationship between the variant codon position and the pathogenicity of the variant is statistically significant: NMD(+) p-value = 7.3e-41; NMD(-) p-value = 0.021.  
+3.  Analysis using chi-square showed that the relationship between the variant codon position and the pathogenicity of the variant is statistically significant: NMD(+) p-value = 7.3e-41; NMD(-) p-value = 0.021.
+   ![final](Ivanova/images/final_plot.png)
