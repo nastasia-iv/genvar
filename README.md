@@ -2,7 +2,7 @@
 
   #### Students:
   * [Irina Grishchenko](https://github.com/grishchenkoira) (место работы?)  
-  * [Anastasiia Ivanova](https://github.com/nastasia-iv/) (место работы?)  
+  * [Anastasia Ivanova](https://github.com/nastasia-iv/) (место работы?)  
   #### Supervisor:
 * Yury Barbitoff (Institute of Bioinformatics Research & Education)  
 
@@ -15,9 +15,9 @@ To reach this goal, we work in several independent directions:
 * Analyze the effects of sequence context on variant frequencies. 
 * Determine the parts of the gene sequence under increased evolutionary constraint. 
 
-  ### Results
+  ## Results
     
-#### Analysis of the sequence context effects on variant frequencies  
+### Analysis of the sequence context effects on variant frequencies  
   
 1.  Most of the stopgain variants occur at the 1st position in the codon for both NMD(+) and NMD(-) datasets.  
    This is expected, because all three stop codons start at the same nucleotide. But the second and third nucleotides of the codon, although also important, can be more flexible and can undergo mutations more often without the occurrence of a stop codon.  
@@ -27,7 +27,7 @@ To reach this goal, we work in several independent directions:
 
 4.  Analysis using chi-square showed that the relationship between the variant codon position and the pathogenicity of the variant is statistically significant: NMD(+) p-value = 7.3e-41; NMD(-) p-value = 0.021.
    ![final](Ivanova/images/final_plot.png)
-#### Transcript Conservation Assessment
+### Transcript Conservation Assessment
 1. The gnomAD database uses LOEUF as a conservativeness metric. It is based on the number of substitutions in a gene or transcript, but does not take into account the occurrence of a particular variant. In our analysis, we tried to introduce our own metric to assess transcript variability - the ratio of the total number of alleles (AC) in a transcript to the total number of variants in this transcript (N). The essence of this metric is that it takes into account not only the total number of variants found in the transcript, but also their total representation in human populations
 2. Using the introduced metric, as well as expression levels and loeuf values, we set boundaries for selecting genes that deviate from typical values. As a result, we received 340 genes for further analysis.
    ![genes](Grishchenko/data/plots/gene_selection.png)
