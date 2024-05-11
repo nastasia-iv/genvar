@@ -12,12 +12,12 @@ Evaluation of the functional effects of genetic variants is a crucial task for t
 The **goal** of this project is to utilize the gnomad v.4.0.0 dataset to improve the prediction of genetic variant effects and explore patterns of variation using different types of variants.  
    
 To reach this goal, we work in several independent directions:  
-* Analyze the effects of sequence context on variant frequencies. 
+* Analyze the relationship between variant frequency and sequence context.  
 * Determine the parts of the gene sequence under increased evolutionary constraint. 
 
   ## Results
     
-### Analysis of the sequence context effects on variant frequencies  
+### Analysis of the relationship between variant frequency and sequence context    
   
 1.  Most of the stopgain variants occur at the 1st position in the codon for both NMD(+) and NMD(-) datasets.  
    This is expected because all three stop codons start at the same nucleotide. But the second and third nucleotides of the codon, although also important, can be more flexible and can undergo mutations more often without the occurrence of a stop codon.  
