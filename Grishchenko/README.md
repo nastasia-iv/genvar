@@ -44,6 +44,6 @@ and outlining the gene selection process for further investigation.
 
 [**TPT1_analysis.tsv**](TPT1_analysis.tsv) - TSV file with analysis results for the gene TPT1.
 
-[Plots directory](https://github.com/nastasia-iv/BI_project_2024/tree/main/Grishchenko/data/plots) contains plots generated from the Jupyter notebooks included in the repository.
+[Plots directory](BI_project_2024/Grishchenko/data/plots) contains plots generated from the Jupyter notebooks included in the repository.
 
 For additional details, refer to the specific files and directories within this repository.
