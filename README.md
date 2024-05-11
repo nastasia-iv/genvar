@@ -6,7 +6,7 @@
   #### Supervisor:
 * Yury Barbitoff (Institute of Bioinformatics Research & Education)  
 
-    ### Overview
+  ### Overview
 Evaluation of the functional effects of genetic variants is a crucial task for interpretation of NGS results in rare disease diagnostics. Besides, understanding of the functional consequences of genetic variants is no less important for enhancing our understanding of how and why variants may have different effects in different cases. Recently, the Genome Aggregation Database (gnomAD) released an updated version of the human genome variation dataset, now including as many as 800,000+ human exomes and genomes.  
   
 The **goal** of this project is to utilize the gnomad v.4.0.0 dataset to improve the prediction of genetic variant effects and explore patterns of variation using different types of variants.  
@@ -14,8 +14,10 @@ The **goal** of this project is to utilize the gnomad v.4.0.0 dataset to improve
 To reach this goal, we work in several independent directions:  
 * Analyze the effects of sequence context on variant frequencies. 
 * Determine the parts of the gene sequence under increased evolutionary constraint. 
-  
-#### Analysis of the effects of sequence context on variant frequencies  
+
+  ### Results
+    
+#### Analysis of the sequence context effects on variant frequencies  
   
 1.  Most of the stopgain variants occur at the 1st position in the codon for both NMD(+) and NMD(-) datasets.  
    This is expected, because all three stop codons start at the same nucleotide. But the second and third nucleotides of the codon, although also important, can be more flexible and can undergo mutations more often without the occurrence of a stop codon.  
