@@ -31,5 +31,5 @@ This directory contains code for analyzing the effect of sequence context on var
     To run Clinvar parser, import function `parse_clinvar_vcf` as shown below, specifying the path to the compressed (`.gz`) vcf file. If necessary, you can specify the output folder and file name. More details can be found in the function docstring.
   ```python
   from parse_vcf_clinvar import parse_clinvar_vcf  
-  parse_clinvar_vcf('path/to/file.vcf.gz')
+  parse_clinvar_vcf("path/to/file.vcf.gz")
   ```
