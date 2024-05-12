@@ -8,7 +8,10 @@ This directory contains code for analyzing the effect of sequence context on var
 * #### [data_processing.ipynb](data_processing.ipynb)  
   Jupyter notebook for processing data from of [gnomad v4](https://gnomad.broadinstitute.org/downloads#v4) exomes and [Clinvar](https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38/) (v.20240331). It contains a brief data analysis, primary variant filtering, and dataframes create options. The resulting dataframes and images are in the [data](data) and [images](images) folders, respectively.
 
+* #### [final_plot.ipynb](final_plot.ipynb)
+  Jupyter notebook with code to plot the final histogram.
   
+    
 * #### [get_context_nmd_escape.ipynb](get_context_nmd_escape.ipynb)  
   Jupyter notebook with sequence context analysis for nonsense-mediated mRNA decay (NMD) escaped region variants. Graphs with analysis results are located in the [images](images). 
 
