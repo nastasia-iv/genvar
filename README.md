@@ -25,7 +25,7 @@ To reach this goal, we work in several independent directions:
 2.  Context analysis between pathogenic and non-pathogenic variants did not show statistically significant differences, except for a possible statistical difference at -1 position for variants located in the first codon position for the NMD(+) dataset (p-value = 0.03).
   ![p_val_undergo](context_analysis/images/p_values_nmd_undergo_plot.png)
 
-4.  Analysis using chi-square showed that the relationship between the variant codon position and the variant's pathogenicity is statistically significant: NMD(+) p-value = 1.06-41; NMD(-) p-value = 0.015.
+4.  Analysis using chi-square showed that the relationship between the variant codon position and the variant's pathogenicity is statistically significant.  
    ![final](context_analysis/images/final_plot.png)
 ### Transcript Conservation Assessment
 1. The gnomAD database uses LOEUF as a conservativeness metric. It is based on the number of substitutions in a gene or transcript, but does not take into account the occurrence of a particular variant. In our analysis, we tried to introduce our own metric to assess transcript variability - the ratio of the total number of alleles (AC) in a transcript to the total number of variants in this transcript (N). The essence of this metric is that it takes into account not only the total number of variants found in the transcript, but also their total representation in human populations
