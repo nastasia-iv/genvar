@@ -46,6 +46,8 @@ and outlining the gene selection process for further investigation.
 
 [all_genes_analysis.tsv](data/all_genes_analysis.tsv) - TSV file with detailed analysis of all human genes.
 
+[example_genes_transcripts.tsv](data/example_genes_transcripts.tsv) - TSV file with transcripts of example genes data.
+
 [Plots directory](data/plots) contains plots generated from the Jupyter notebooks included in the repository.
 
 For additional details, refer to the specific files and directories within this repository.
