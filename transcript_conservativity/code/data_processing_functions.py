@@ -132,26 +132,28 @@ def info_filtering(gene_data: pd.DataFrame,
 
     # LOEUF metric and exon number
     transcripts = transcripts_df_ac['Transcript_ID'].unique()
+    tr = []
     for transcript in transcripts:
-        loeuf_values.append(constraint_transcript
-                            [constraint_transcript['transcript'] ==
-                            transcript]['lof.oe_ci.upper'].squeeze()
-                           )
-        exon_numbers.append(constraint_transcript
-                            [constraint_transcript['transcript'] ==
-                            transcript]['num_coding_exons'].squeeze()
-                           )
+        # LOEUF metric and exon number
+        loeuf = list(constraint_transcript[constraint_transcript['transcript'].str.contains(transcript)]['lof.oe_ci.upper'])
+        exon = list(constraint_transcript[constraint_transcript['transcript'].str.contains(transcript)]['num_coding_exons'])
+        # Expression level
+        expression_level = list(expression_transcript[expression_transcript['ID_transcript'].str.contains(transcript)]['Max_median_expression'])
+        if loeuf != []:
+            loeuf_values.append(loeuf[0])
+        else:
+            loeuf_values.append(np.nan)
+        if exon != []:
+            exon_numbers.append(exon[0])
+        else:
+            exon_numbers.append(np.nan)
+        if expression_level != []:
+            expression.append(expression_level[0])
+        else:
+            expression.append(np.nan)
+
     transcripts_df_ac['LOEUF_transcript'] = loeuf_values
     transcripts_df_ac['Exon_number'] = exon_numbers
-
-    # Expression level
-    for transcript in transcripts:
-        expression_level = list(expression_transcript[
-            expression_transcript['ID_transcript'].str.contains(transcript)
-            ]['Max_median_expression'])
-        try:
-            expression.append(expression_level[0])
-        except Exception:
-            expression.append(np.nan)
     transcripts_df_ac['Max_median_expression'] = expression
+
     return transcripts_df_ac
