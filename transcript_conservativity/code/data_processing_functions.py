@@ -50,6 +50,8 @@ def info_filtering(gene_data: pd.DataFrame,
     gene_names = []
     gene_id = []
     alt_sum = []
+    loeuf_values = []
+    exon_numbers = []
     expression = []
 
     # Reading data
@@ -120,23 +122,27 @@ def info_filtering(gene_data: pd.DataFrame,
         'Gene_name': gene_names,
         'Gene_id': gene_id,
         'Variant': alt_sum,
-        'Max AC in transcript': freq,
-        'Consequence of max AC': freq_cons
+        'Max_AC_in_transcript': freq,
+        'Consequence_of_max_AC': freq_cons
         })
 
     # AC/N metric
     transcripts_df_ac['AC/Variant'] = transcripts_df_ac['AC'] /\
         transcripts_df_ac['Variant']
-    matched_values = constraint_transcript_loeuf[
-        constraint_transcript_loeuf['transcript'].isin(
-            transcripts_df_ac['Transcript_ID'])
-            ]
-    matched_values.reset_index(inplace=True)
 
     # LOEUF metric and exon number
-    transcripts_df_ac['lof_transcript'] = matched_values['lof.oe_ci.upper']
-    transcripts_df_ac['Exon_number'] = matched_values['num_coding_exons']
     transcripts = transcripts_df_ac['Transcript_ID'].unique()
+    for transcript in transcripts:
+        loeuf_values.append(constraint_transcript
+                            [constraint_transcript['transcript'] ==
+                            transcript]['lof.oe_ci.upper'].squeeze()
+                           )
+        exon_numbers.append(constraint_transcript
+                            [constraint_transcript['transcript'] ==
+                            transcript]['num_coding_exons'].squeeze()
+                           )
+    transcripts_df_ac['LOEUF_transcript'] = loeuf_values
+    transcripts_df_ac['Exon_number'] = exon_numbers
 
     # Expression level
     for transcript in transcripts:
