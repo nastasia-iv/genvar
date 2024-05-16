@@ -15,6 +15,15 @@ classic conservativity metrics to gain insights into transcript conservation acr
 > vcf_parsing('../data/NAME_OF_YOUR_FILE.vcf')
 > ```
 
+[data_processing_functions.py](code/data_processing_functions.py) - Script for collecting information about transcripts
+
+> Usage:
+> ```python
+> from data_processing_functions import info_collecting, info_filtering
+> all_gene_dataframe = info_collecting(files_names)
+> final_transcipt_data = info_filtering(all_gene_dataframe, constraint_file, expression_file)
+> ```
+
 [gnomad_vcf_parser.ipynb](code/gnomad_vcf_parser.ipynb) - Jupyter notebook demonstrating the usage of `vcf_parsing` from vcf_parser.py.
 
 [all_chr_genvar_analysis.ipynb](code/all_chr_genvar_analysis.ipynb) - Jupyter notebook illustrating gene analysis from all chromosomes,
@@ -36,14 +45,6 @@ and outlining the gene selection process for further investigation.
 [max_tissue_median_expr.tsv](data/max_tissue_median_expr.tsv) - TSV file with maximum median tissue expression data.
 
 [all_genes_analysis.tsv](data/all_genes_analysis.tsv) - TSV file with detailed analysis of all human genes.
-
-[CFLAR_analysis.tsv](data/CFLAR_analysis.tsv) - TSV file with analysis results for the gene CFLAR.
-
-[RPS10_analysis.tsv](RPS10_analysis.tsv) - TSV file with analysis results for the gene RPS10.
-
-[HLADRA_analysis.tsv](data/HLADRA_analysis.tsv) - TSV file with analysis results for the gene HLA-DRA.
-
-[TPT1_analysis.tsv](data/TPT1_analysis.tsv) - TSV file with analysis results for the gene TPT1.
 
 [Plots directory](data/plots) contains plots generated from the Jupyter notebooks included in the repository.
 
