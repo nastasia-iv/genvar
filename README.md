@@ -18,7 +18,8 @@ To reach this goal, we work in several independent directions:
   ## Methods
 For the analysis, [vcf-formatted tables](https://gnomad.broadinstitute.org/downloads#v4) containing exome data for autosomes were utilized.  
 The work was performed on Windows 10 x64 and Ubuntu 20.04.2 LTS. The code was developed utilizing Python 3.12.2. Both parts of the analysis use different third-party packages, the required dependencies for each task are listed in the corresponding `environment.yaml` file.  
-   
+
+      
   ## Results
     
 ### Analysis of the relationship between variant frequency and sequence context    
