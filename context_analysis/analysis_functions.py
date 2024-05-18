@@ -2,7 +2,6 @@ from typing import List, Tuple, Union
 
 import numpy as np
 import pandas as pd
-from pyfaidx import Fasta
 from scipy.stats import chi2_contingency
 from statsmodels.stats.multitest import multipletests
 
