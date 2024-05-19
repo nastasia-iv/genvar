@@ -38,7 +38,7 @@ The work was performed on Windows 10 x64 and Ubuntu 20.04.2 LTS. The code was de
   
 4.  Analysis using chi-square showed that the relationship between the variant codon position and the variant's pathogenicity is statistically significant.  
 <p align="center">
-  <img src="context_analysis/images/final_plot.png" alt="final_plot" style="width:600px;">
+  <img src="context_analysis/images/final_plot.png" alt="final_plot" style="width:500px;">
 </p>
   
 ### Transcript Conservation Assessment
