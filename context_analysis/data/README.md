@@ -2,11 +2,11 @@
 This directory contains tables obtained during sequence context analysis.  
   
 * #### [all_nmd_escape_final.csv](all_nmd_escape_final.csv)  
-  CSV file with filtered stopgain variants that escape nonsense-mediated decay (NMD). Contains information about the expected variant pathogenicity, codon position, and surrounding sequence context.  
+  CSV file with filtered stopgain variants (_pathogenic_ and _benign_) that escape nonsense-mediated decay (NMD). Contains information about the expected variant pathogenicity, codon position, and surrounding sequence context.  
     
   
 * #### [all_nmd_undergo_final.csv](all_nmd_undergo_final.csv)  
-  CSV file with filtered stopgain variants that undergo NMD. Contains information about the expected variant pathogenicity, codon position, and surrounding sequence context.  
+  CSV file with filtered stopgain variants (_pathogenic_ and _benign_) that undergo NMD. Contains information about the expected variant pathogenicity, codon position, and surrounding sequence context.  
 
      
 * #### [pat_nmd_escape_final.csv](pat_nmd_escape_final.csv)  
@@ -38,8 +38,8 @@ This directory contains tables obtained during sequence context analysis.
 
     
 * #### [nmd_escape_df.csv](nmd_escape_df.csv)  
-  CSV file with filtered stopgain variants (gnomAD + Clinvar) that avoid NMD.  
+  CSV file with filtered stopgain variants (gnomAD + Clinvar) that avoid NMD. Contains _no_ sequence context or codon information.    
 
     
 * #### [nmd_undergo_df.csv](nmd_undergo_df.csv)
-  CSV file with filtered stopgain variants  (gnomAD + Clinvar) that undergo NMD.  
+  CSV file with filtered stopgain variants  (gnomAD + Clinvar) that undergo NMD. Contains _no_ sequence context or codon information.    
