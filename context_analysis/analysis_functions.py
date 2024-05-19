@@ -2,8 +2,12 @@ from typing import List, Tuple, Union
 
 import numpy as np
 import pandas as pd
-from scipy.stats import chi2_contingency
+from scipy.stats import chi2_contingency, stats
 from statsmodels.stats.multitest import multipletests
+
+transitions = [('A', 'G'), ('G', 'A'), ('C', 'T'), ('T', 'C')]
+transversions = [('A', 'C'), ('C', 'A'), ('A', 'T'), ('T', 'A'),
+                 ('G', 'C'), ('C', 'G'), ('G', 'T'), ('T', 'G')]
 
 
 def get_context(df: pd.DataFrame, transcript_fasta: dict, left_len: int, right_len: int) -> str:
@@ -114,6 +118,25 @@ def get_codon_info(row: pd.Series) -> Union[int, str]:
     else:
         return 'No_stop', 'No_stop'
 
+
+def classify_mutation_pair(pair: Tuple[str, str]) -> str:
+    """
+    Classifies a given nucleotide pair as either a transition or a transversion.
+
+    Args:
+        pair (Tuple[str, str]): A tuple containing two nucleotides (e.g., ('A', 'G')).
+
+    Returns:
+        str: The classification of the pair:
+             'Transition' if the pair is a transition,
+             'Transversion' if the pair is a transversion,
+             'Other' if the pair does not match known transitions or transversions.
+    """
+    if pair in transitions:
+        return 'Transition'
+    elif pair in transversions:
+        return 'Transversion'
+    return 'Other'
 
 
 def filter_and_convert_to_list(column: pd.Series) -> List[str]:
