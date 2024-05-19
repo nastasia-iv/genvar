@@ -24,10 +24,10 @@ The work was performed on Windows 10 x64 and Ubuntu 20.04.2 LTS. The code was de
 ### Analysis of the relationship between variant frequency and sequence context    
   
 1. Among potentially pathogenic variants, the TAG codon was more common (47% and 46% for NMD(-) and NMD(+), respectively), and among potentially benign variants it was TGA (52% and 59%, respectively). As expected,  transitions were more common than transversions (p-value = 0.0002  for NMD(+), p-value = 1.98e-31  for NMD(-)).  
-<center>
-  <img src="context_analysis/images/combined_line_plot_stops_distr.png" alt="combined_line_plot" style="width:600px;">
-</center>
-  
+<p align="center">
+  <img src="context_analysis/images/combined_line_plot_stops_distr.png" alt="combined_line_plot" style="width:500px;">
+</p>
+
 2.  Most of the stopgain variants occur at the 1st position in the codon for both NMD(+) and NMD(-) datasets.  
    This is expected because the second and third nucleotides of the codon, although also important, can be more flexible and can undergo mutations more often without the occurrence of a stop codon.  
   
