@@ -25,17 +25,22 @@ The work was performed on Windows 10 x64 and Ubuntu 20.04.2 LTS. The code was de
   
 1. Among potentially pathogenic variants, the TAG codon was more common (47% and 46% for NMD(-) and NMD(+), respectively), and among potentially benign variants it was TGA (52% and 59%, respectively). As expected,  transitions were more common than transversions (p-value = 0.0002  for NMD(+), p-value = 1.98e-31  for NMD(-)).  
 <p align="center">
-  <img src="context_analysis/images/combined_line_plot_stops_distr.png" alt="combined_line_plot" style="width:500px;">
+  <img src="context_analysis/images/combined_line_plot_stops_distr.png" alt="combined_line_plot" style="width:600px;">
 </p>
-
+ 
 2.  Most of the stopgain variants occur at the 1st position in the codon for both NMD(+) and NMD(-) datasets.  
    This is expected because the second and third nucleotides of the codon, although also important, can be more flexible and can undergo mutations more often without the occurrence of a stop codon.  
   
 3.  Context analysis between pathogenic and non-pathogenic variants did not show statistically significant differences, except for a possible statistical difference at -1 position for variants located in the first codon position for the NMD(+) dataset (p-value = 0.03).
-  ![p_val_undergo](context_analysis/images/p_values_nmd_undergo_plot.png)
-
+<p align="center">
+  <img src="context_analysis/images/p_values_nmd_undergo_plot.png" alt="final_plot" style="width:600px;">
+</p>
+  
 4.  Analysis using chi-square showed that the relationship between the variant codon position and the variant's pathogenicity is statistically significant.  
-   ![final](context_analysis/images/final_plot.png)
+<p align="center">
+  <img src="context_analysis/images/final_plot.png" alt="final_plot" style="width:600px;">
+</p>
+  
 ### Transcript Conservation Assessment
 1. The gnomAD database uses LOEUF as a conservativeness metric. It is based on the number of substitutions in a gene or transcript, but does not take into account the occurrence of a particular variant. In our analysis, we tried to introduce our own metric to assess transcript variability - the ratio of the total number of alleles (AC) in a transcript to the total number of variants in this transcript (N). The essence of this metric is that it takes into account not only the total number of variants found in the transcript, but also their total representation in human populations
 2. Using the introduced metric, as well as expression levels and loeuf values, we set boundaries for selecting genes that deviate from typical values. As a result, we received 340 genes for further analysis.
