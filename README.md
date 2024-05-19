@@ -33,12 +33,12 @@ The work was performed on Windows 10 x64 and Ubuntu 20.04.2 LTS. The code was de
   
 3.  Context analysis between pathogenic and non-pathogenic variants did not show statistically significant differences, except for a possible statistical difference at -1 position for variants located in the first codon position for the NMD(+) dataset (p-value = 0.03).
 <p align="center">
-  <img src="context_analysis/images/p_values_nmd_undergo_plot.png" alt="final_plot" style="width:600px;">
+  <img src="context_analysis/images/p_values_nmd_undergo_plot.png" alt="final_plot">
 </p>
   
 4.  Analysis using chi-square showed that the relationship between the variant codon position and the variant's pathogenicity is statistically significant.  
 <p align="center">
-  <img src="context_analysis/images/final_plot.png" alt="final_plot" style="width:600px;">
+  <img src="context_analysis/images/final_plot.png" alt="final_plot">
 </p>
   
 ### Transcript Conservation Assessment
