@@ -15,12 +15,18 @@ To reach this goal, we work in several independent directions:
 * Analyze the relationship between variant frequency and sequence context.  
 * Determine the parts of the gene sequence under increased evolutionary constraint.
 
-## Results
+  ## Materials and methods
+For the analysis, [vcf-formatted tables](https://gnomad.broadinstitute.org/downloads#v4) containing exome data for autosomes were utilized.  
+The work was performed on Windows 10 x64 and Ubuntu 20.04.2 LTS. The code was developed utilizing Python 3.12.2. Both parts of the analysis use different third-party packages, the required dependencies for each task are listed in the corresponding `environment.yaml` file. 
+
+  ## Results
     
 ### Analysis of the relationship between variant frequency and sequence context    
   
 1. Among potentially pathogenic variants, the TAG codon was more common (47% and 46% for NMD(-) and NMD(+), respectively), and among potentially benign variants it was TGA (52% and 59%, respectively). As expected,  transitions were more common than transversions (p-value = 0.0002  for NMD(+), p-value = 1.98e-31  for NMD(-)).
-    ![combined_line_plot](context_analysis/images/combined_line_plot_stops_distr.png) 
+    <p align="center">
+  <img src="context_analysis/images/combined_line_plot_stops_distr.png" alt="combined_line_plot" width="600">
+</p>  
 
 2.  Most of the stopgain variants occur at the 1st position in the codon for both NMD(+) and NMD(-) datasets.  
    This is expected because the second and third nucleotides of the codon, although also important, can be more flexible and can undergo mutations more often without the occurrence of a stop codon.  
@@ -36,7 +42,3 @@ To reach this goal, we work in several independent directions:
    ![genes](transcript_conservativity/data/plots/gene_selection.png)
 3. Several gene examples have been selected  from our list using the most rigorous selection criteria. All the identified genes are pivotal regulatory protein-coding genes. Remarkably, in every instance, the transcript hosting the predominant variant was observed to be shorter than the canonical transcript. 6 cases revealed associations between the variant and the emergence of a splice site, typically positioned at the transcript's outset. Moreover, in 8 cases, the variant fell into the frameshift category and predominantly appeared at the end of the coding sequence. The distribution of variant types varied based on the genes' expression levels.
    ![genes_example](transcript_conservativity/data/plots/consequence_example_genes.png)
-
-## Dependencies
-For the analysis, [vcf-formatted tables](https://gnomad.broadinstitute.org/downloads#v4) containing exome data for autosomes were utilized.  
-The work was performed on Windows 10 x64 and Ubuntu 20.04.2 LTS. The code was developed utilizing Python 3.12.2. Both parts of the analysis use different third-party packages, the required dependencies for each task are listed in the corresponding `environment.yaml` file. 
