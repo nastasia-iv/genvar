@@ -77,16 +77,16 @@ def check_ref(row: pd.Series, transcript_fasta: dict) -> str:
         return 'Not_defined'
 
 
-def get_codon_position(row: pd.Series) -> Union[int, str]:
+def get_codon_info(row: pd.Series) -> Union[int, str]:
     """
     Change the reference option to an alternative one in the context of the sequence. 
-    Then determine at what codon position the variant is located.
+    Then determine at which codon position the variant is located and which stop codon results.
 
     Args:
         row: pd.Series: A row from a DataFrame.
 
     Returns:
-        Union[int, str]: The updated codon position or a string indicating the absence of a stop codon or strand information.
+        Union[Tuple[int, str], str]: A tuple containing the codon position and the codon itself, or a string indicating the absence of a stop codon or strand information.
     """
     context = row['Context']
     strand = row['Strand']
@@ -99,16 +99,21 @@ def get_codon_position(row: pd.Series) -> Union[int, str]:
         complement_alt = complement_bases.get(alt)
         updated_context = context[:12] + complement_alt + context[13:]
     else:
-        return 'No_strand'
+        return 'No_strand', 'No_strand'
 
-    if updated_context[10:13] in ['TAA', 'TAG', 'TGA']:
-        return 3
-    elif updated_context[11:14] in ['TAA', 'TAG', 'TGA']:
-        return 2
-    elif updated_context[12:15] in ['TAA', 'TAG', 'TGA']:
-        return 1
+    codon_position_1 = updated_context[10:13]
+    codon_position_2 = updated_context[11:14]
+    codon_position_3 = updated_context[12:15]
+
+    if codon_position_1 in ['TAA', 'TAG', 'TGA']:
+        return 3, codon_position_1
+    elif codon_position_2 in ['TAA', 'TAG', 'TGA']:
+        return 2, codon_position_2
+    elif codon_position_3 in ['TAA', 'TAG', 'TGA']:
+        return 1, codon_position_3
     else:
-        return 'No_stop'
+        return 'No_stop', 'No_stop'
+
 
 
 def filter_and_convert_to_list(column: pd.Series) -> List[str]:
