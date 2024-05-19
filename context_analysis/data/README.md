@@ -18,11 +18,11 @@ This directory contains tables obtained during sequence context analysis.
    
     
 * #### [pat_nmd_undergo_final.csv](pat_nmd_undergo_final.csv)  
-  CSV file with filtered potentially _pathogenic_ stopgain variants that avoid nonsense-mediated decay (NMD).
+  CSV file with filtered potentially _pathogenic_ stopgain variants that undergo nonsense-mediated decay (NMD).
 
    
 * #### [ben_nmd_undergo_final.csv](ben_nmd_undergo_final.csv)  
-  CSV file with filtered potentially _pathogenic_ stopgain variants that avoid nonsense-mediated decay (NMD).     
+  CSV file with filtered potentially _pathogenic_ stopgain variants that undergo nonsense-mediated decay (NMD).     
 
          
 * #### [clinvar_nmd_escape_df.csv](clinvar_nmd_escape_df.csv)  
