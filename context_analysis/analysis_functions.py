@@ -81,7 +81,7 @@ def check_ref(row: pd.Series, transcript_fasta: dict) -> str:
         return 'Not_defined'
 
 
-def get_codon_info(row: pd.Series) -> Union[int, str]:
+def get_codon_info(row: pd.Series) -> Union[Tuple[int, str, str], Tuple[str, str]]:
     """
     Change the reference option to an alternative one in the context of the sequence. 
     Then determine at which codon position the variant is located and which stop codon results.
@@ -90,7 +90,7 @@ def get_codon_info(row: pd.Series) -> Union[int, str]:
         row: pd.Series: A row from a DataFrame.
 
     Returns:
-        Union[Tuple[int, str], str]: A tuple containing the codon position and the codon itself, or a string indicating the absence of a stop codon or strand information.
+        Union[Tuple[int, str, str], Tuple[str, str]]: A tuple containing the codon position, the original codon, and the resulting stop codon, or a tuple indicating the absence of a stop codon or strand information.
     """
     context = row['Context']
     strand = row['Strand']
@@ -110,11 +110,11 @@ def get_codon_info(row: pd.Series) -> Union[int, str]:
     codon_position_3 = updated_context[12:15]
 
     if codon_position_1 in ['TAA', 'TAG', 'TGA']:
-        return 3, codon_position_1
+        return 3, context[10:13], codon_position_1
     elif codon_position_2 in ['TAA', 'TAG', 'TGA']:
-        return 2, codon_position_2
+        return 2, context[11:14], codon_position_2
     elif codon_position_3 in ['TAA', 'TAG', 'TGA']:
-        return 1, codon_position_3
+        return 1, context[12:15], codon_position_3
     else:
         return 'No_stop', 'No_stop'
 
