@@ -19,7 +19,8 @@ To reach this goal, we work in several independent directions:
 For the analysis, [vcf-formatted tables](https://gnomad.broadinstitute.org/downloads#v4) containing exome data for autosomes were utilized.  
 The code was developed utilizing Python 3.12.2. Both parts of the analysis use different third-party packages, the required dependencies for each task are listed in the corresponding `environment.yaml` file.
 
-  ## Results  
+  ## Results
+
 ### Analysis of the relationship between variant frequency and sequence context    
   
 1. Among potentially pathogenic variants, the TAG codon was more common (47% and 46% for NMD(-) and NMD(+), respectively), and among potentially benign variants it was TGA (52% and 59%, respectively). As expected,  transitions were more common than transversions (p-value = 0.0002  for NMD(+), p-value = 1.98e-31  for NMD(-)).  
