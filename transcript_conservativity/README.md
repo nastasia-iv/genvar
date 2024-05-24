@@ -3,8 +3,7 @@
 ### Overview
 This repository contains scripts and notebooks for the analysis of transcript conservation in human genes. 
 The analysis combines information about genetic variations in transcripts with expression data and
-classic conservativity metrics to gain insights into transcript conservation across genes. A list of required packages and libraries is presented in [environment.yaml](environment.yaml).
-
+classic conservativity metrics to gain insights into transcript conservation across genes.
 #### Code Directory
 
 [vcf_parser.py](code/vcf_parser.py) - Script for parsing VCF files to collect necessary data.
