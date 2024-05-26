@@ -17,11 +17,11 @@ To reach this goal, we work in several independent directions:
 
   ## Materials and methods
 For the analysis, [vcf-formatted tables](https://gnomad.broadinstitute.org/downloads#v4) containing exome data for autosomes were utilized.  
-The code was developed utilizing Python 3.12.2. Both parts of the analysis use different third-party packages, the required dependencies for each task are listed in the corresponding `environment.yaml` file.
+The code was developed utilizing Python 3.12.2. Both parts of the analysis use different third-party packages, the required dependencies for each task are listed in the corresponding [environment.yaml](environment.yaml) file.
 
   ## Results
 
-### Analysis of the relationship between variant frequency and sequence context    
+  ### Analysis of the relationship between variant frequency and sequence context    
   
 1. Among potentially pathogenic variants, the TAG codon was more common (47% and 46% for NMD(-) and NMD(+), respectively), and among potentially benign variants it was TGA (52% and 59%, respectively). As expected,  transitions were more common than transversions (p-value = 0.0002  for NMD(+), p-value = 1.98e-31  for NMD(-)).  
 <p align="center">
@@ -41,7 +41,7 @@ The code was developed utilizing Python 3.12.2. Both parts of the analysis use d
   <img src="context_analysis/images/final_plot.png" alt="final_plot" style="width:500px;">
 </p>
   
-### Transcript Conservation Assessment
+  ### Transcript Conservation Assessment
 1. The gnomAD database uses LOEUF as a conservativeness metric. It is based on the number of substitutions in a gene or transcript, but does not take into account the occurrence of a particular variant. In our analysis, we tried to introduce our own metric to assess transcript variability - the ratio of the total number of alleles (AC) in a transcript to the total number of variants in this transcript (N). The essence of this metric is that it takes into account not only the total number of variants found in the transcript, but also their total representation in human populations
 2. Using the introduced metric, as well as expression levels and loeuf values, we set boundaries for selecting genes that deviate from typical values. As a result, we received 229 genes for further analysis.
    ![genes](transcript_conservativity/data/plots/gene_selection.png)
