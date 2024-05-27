@@ -1,8 +1,8 @@
 # Improving the prediction of genetic variant effect using large-scale human genome variation data  
 
   #### Students:
-  * [Irina Grishchenko](https://github.com/grishchenkoira) (transcript conservation assessment)   
-  * [Anastasia Ivanova](https://github.com/nastasia-iv/) (context analysis)    
+  * [Irina Grishchenko](https://github.com/grishchenkoira)   
+  * [Anastasia Ivanova](https://github.com/nastasia-iv/)    
   #### Supervisor:
 * Yury Barbitoff (Institute of Bioinformatics Research & Education)  
 
