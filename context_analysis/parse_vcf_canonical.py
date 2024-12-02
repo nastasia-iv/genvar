@@ -5,8 +5,7 @@ from typing import List, Dict
 
 headers = [
     'Chr', 'Position', 'rsID', 'Ref', 'Alt', 'AC', 'Impact', 'Consequence',
-    'Gene_symbol', 'Canonical_transcript', 'cDNA_position', 'CDS_position',
-       'Protein_position', 'Amino_acids', 'Codons', 'STRAND', 'LoF', 'LoF_flag', 'LoF_filter'
+    'Gene_symbol', 'Canonical_transcript', 'cDNA_position', 'LoF', 'LoF_flag', 'LoF_filter'
 ]
 
 # Column names for VCF file
@@ -95,11 +94,6 @@ def parse_line(line: List[str]) -> List[str]:
         ', '.join(transcript_info['SYMBOL']),
         ', '.join(transcript_info['Feature']),
         ', '.join(transcript_info['cDNA_position']),
-        ', '.join(transcript_info['CDS_position']),
-        ', '.join(transcript_info['Protein_position']),
-        ', '.join(transcript_info['Amino_acids']),
-        ', '.join(transcript_info['Codons']),
-        ', '.join(transcript_info['STRAND']),
         ', '.join(transcript_info['LoF']),
         ', '.join(transcript_info['LoF_flags']),
         ', '.join(transcript_info['LoF_filter'])
@@ -137,8 +131,7 @@ def get_canonical_info(line: List[str]) -> Dict[str, List[str]]:
     Returns:
         Dict[str, List[str]]: Dictionary containing information on canonical Ensemble transcript.
     """
-    transcript_info = {field: [] for field in ['IMPACT', 'Consequence', 'SYMBOL', 'Feature', 'cDNA_position', 'CDS_position',
-       'Protein_position', 'Amino_acids', 'Codons', 'STRAND', 'LoF', 'LoF_flags', 'LoF_filter']}
+    transcript_info = {field: [] for field in ['IMPACT', 'Consequence', 'SYMBOL', 'Feature', 'cDNA_position', 'LoF', 'LoF_flags', 'LoF_filter']}
     info = line[vcf_columns_dict['INFO']].split(';')
     vep_info = info[-1].split('|')
     feature_index = vep_names.index('Feature')
