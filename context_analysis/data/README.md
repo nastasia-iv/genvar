@@ -16,15 +16,17 @@ This directory contains tables obtained during sequence context analysis.
 * #### [clinvar_nmd_undergo_df.csv](clinvar_nmd_undergo_df.csv)  
   CSV file with pathogenic/likely pathogenic [Clinvar](https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38/) (v.20240331) variants falling under NMD.    
 
+* #### [lof_loeuf_df.csv](lof_loeuf_df.csv)  
+  CSV file with stopgain variants located on canonical transcripts and not containing loss-of-function flags/filters according to the VEP annotation. Information obtained from exome [gnomad v4](https://gnomad.broadinstitute.org/downloads#v4) data (autosomes only). Variants are balanced by LOEUF score.  
     
 * #### [lof_final_df.csv](lof_final_df.csv)  
-  CSV file with stopgain variants located on canonical transcripts and not containing loss-of-function flags/filters according to the VEP annotation. Information obtained from exome [gnomad v4](https://gnomad.broadinstitute.org/downloads#v4) data (autosomes only).  
+  CSV file with stopgain variants located on canonical transcripts and not containing loss-of-function flags/filters according to the VEP annotation. Information obtained from exome [gnomad v4](https://gnomad.broadinstitute.org/downloads#v4) data (autosomes only). Variants are balanced by LOEUF and pext scores.  
 
     
 * #### [nmd_escape_df.csv](nmd_escape_df.csv)  
-  CSV file with filtered stopgain variants (gnomAD + Clinvar) that avoid NMD. Contains _no_ sequence context or codon information.    
+  CSV file with filtered stopgain variants (gnomAD + Clinvar) that avoid NMD. Contains _no_ sequence context or codon information. Based on lof_final_df.csv.      
 
     
 * #### [nmd_undergo_df.csv](nmd_undergo_df.csv)
-  CSV file with filtered stopgain variants  (gnomAD + Clinvar) that undergo NMD. Contains _no_ sequence context or codon information.    
+  CSV file with filtered stopgain variants  (gnomAD + Clinvar) that undergo NMD. Contains _no_ sequence context or codon information. Based on lof_final_df.csv.    
 
