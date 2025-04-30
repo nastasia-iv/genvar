@@ -1,0 +1,16 @@
+bcftools index --tbi clinvar_20250330.vcf.gz
+
+
+bcftools view -i '(INFO/CLNVC ~ "single_nucleotide_variant") && (INFO/CLNSIG ~ "Pathogenic" || INFO/CLNSIG ~ "Likely_pathogenic") && (INFO/CLNREVSTAT !~ "no_assertion_criteria_provided")' clinvar_20250330.vcf.gz -o snp_pat_lpat_clinvar_20250330.vcf
+
+
+bcftools view -H snp_pat_lpat_clinvar_20250330.vcf | wc -l
+
+
+bcftools query -f '%CLNSIG\n' snp_pat_lpat_clinvar_20250330.vcf | sort | uniq
+
+
+./vep --cache --canonical --input_file ~/clinvar/first_1000_lines.vcf --output_file ~/clinvar/first_1000_lines_anno.vcf --vcf
+
+
+zgrep "stop_gain" all.possible.snvs.tx_annotated.GTEx.v7.021520.tsv.bgz > all.stopgains.tx_annotated.GTEx.v7.021520.tsv

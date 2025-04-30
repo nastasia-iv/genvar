@@ -5,8 +5,9 @@ from typing import List
 
 # csv.field_size_limit(sys.maxsize)
 
-headers = ['CHROM', 'POS', 'ID', 'REF', 'ALT', 'CLNSIG', 'CLNVC', 'GENEINFO', 'MC',
-           'Consequence', 'SYMBOL', 'Gene', 'Feature_type', 'Feature', 'BIOTYPE', 'cDNA_position', 'CANONICAL']
+headers = ['CHROM', 'POS', 'ID', 'REF', 'ALT', 'CLNREVSTAT', 'CLNSIG', 'CLNVC', 'GENEINFO', 'MC',
+           'Consequence', 'SYMBOL', 'Gene', 'Feature_type', 'Feature', 'BIOTYPE', 'cDNA_position', 
+           'CDS_position', 'Protein_position', 'Amino_acids', 'Codons', 'STRAND', 'FLAGS', 'CANONICAL']
 
 # Column names for Clinvar VCF file
 clinvar_columns = ['CHROM', 'POS', 'ID', 'REF', 'ALT', 'QUAL', 'FILTER', 'INFO']
@@ -104,15 +105,21 @@ def parse_vcf_line(line: List[str]) -> List[List[str]]:
             info_feature = variant_info[vep_names_dict.get('Feature')]
             info_biotype = variant_info[vep_names_dict.get('BIOTYPE')]
             info_cDNA = variant_info[vep_names_dict.get('cDNA_position')]
+            info_cds = variant_info[vep_names_dict.get('CDS_position')]
+            info_protein_pos = variant_info[vep_names_dict.get('Protein_position')]
+            info_aa = variant_info[vep_names_dict.get('Amino_acids')]
+            info_codons = variant_info[vep_names_dict.get('Codons')]
+            info_strand = variant_info[vep_names_dict.get('STRAND')]
+            info_flags = variant_info[vep_names_dict.get('FLAGS')]
             info_canonical = variant_info[vep_names_dict.get('CANONICAL')]
 
             filtered_data = [
                 chrom, position, variation_id, ref, alt,
-                clinvar_info_dict['CLNSIG'], clinvar_info_dict['CLNVC'], clinvar_info_dict['GENEINFO'],
+                clinvar_info_dict['CLNREVSTAT'], clinvar_info_dict['CLNSIG'], clinvar_info_dict['CLNVC'], clinvar_info_dict['GENEINFO'],
                 clinvar_info_dict['MC'],
                 info_consequence, info_symbol, info_gene, info_feature_type,
-                info_feature, info_biotype,
-                info_cDNA, info_canonical
+                info_feature, info_biotype, info_cDNA, info_cds, info_protein_pos, 
+                info_aa, info_codons, info_strand, info_flags, info_canonical   
             ]
             parsed_data.append(filtered_data)
 

@@ -26,7 +26,7 @@ def get_context(df: pd.DataFrame, transcript_fasta: dict, left_len: int, right_l
     contexts = []
 
     for index, row in df.iterrows():
-        transcript_id = row['Canonical_transcript']
+        transcript_id = row['Feature']
         position_of_interest = row['cDNA_position']
 
         if transcript_id in transcript_fasta:
